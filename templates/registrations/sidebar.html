@@ -16,11 +16,11 @@
             </div>
         </div>
         <!-- Sidebar Navidation Menus-->
-        <span class="heading">مدیریت کتابخانه دانشگاه صنعتی شاهرود</span>
+        <span class="heading">مدیریت کتابخانه دانشگاه شاهرود</span>
         <ul class="list-unstyled">
-            <li class="active"><a href="list_book.html"> <i class="fa fa-book" style="color: white"></i>لیست کتاب ها </a>
+            <li class="active"><a href="{% url 'account:list_book' %}"> <i class="fa fa-book" ></i>لیست کتاب ها </a>
             </li>
-            <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
+            <li><a href="{% url 'account:create_book' %}"> <i class="fa fa-snowflake-o" aria-hidden="true"></i>اضافه کردن کتاب </a></li>
             <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
             <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i

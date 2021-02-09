@@ -32,11 +32,17 @@
                             <tr>
                                 <td>{{ book.title }}</td>
                                 <td><img src="{{ book.thumbnail.url }}" style="width: 120px"></td>
-                                <td>{{book.slug}}</td>
+                                <td>{{ book.slug }}</td>
                                 <td>{{ book.category_to_string }}</td>
                                 <td>{{ book.author }}</td>
-                                <td>{{ book.description|truncatewords:"10" }}</td>
-                                <td>{{ book.status }}</td>
+                                <td>{{ book.description|safe|truncatewords:"10" }}</td>
+                                <td>
+                                    {% if book.status == "p" %}
+                                    <span class="badge badge-success">موجود</span>
+                                    {% else %}
+                                        <span class="badge badge-light">امانت گرفته شده</span>
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
