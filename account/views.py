@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView,CreateView
 from book.models import Book
+from account.models import User
 
 
 class BookList(ListView):
@@ -11,6 +12,11 @@ class BookList(ListView):
             return Book.objects.all()
         else:
             return Book.objects.filter(status='p')
+
+class MemberList(ListView):
+    template_name = 'registrations/list_member.html'
+    queryset = User.objects.all()
+
 
 class BookCreate(CreateView):
     model = Book
