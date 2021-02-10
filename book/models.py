@@ -52,7 +52,6 @@ class Issue(models.Model):
     slugUser = models.SlugField(unique=True, blank=True, verbose_name="کد کاربر")
     created = models.DateTimeField(auto_now_add=True, verbose_name='زمان انتشار')
     renewCount = models.IntegerField(verbose_name="تعداد تمدید")
-
     class Meta:
         verbose_name = "امانت"
         verbose_name_plural = "امانات"

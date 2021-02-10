@@ -20,9 +20,10 @@
     <ul class="list-unstyled">
         <li>
             <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
-                <i class="icon-windows"></i>کتاب </a>
+                <i class="icon-windows"></i>کتاب ها </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="{% url 'account:list_book' %}"><i class="fa fa-book"></i>لیست کتاب ها </a></li>
+                <li><a href="{% url 'account:list_book' %}"><i class="fa fa-book"></i>لیست همه ی کتاب ها </a></li>
+                <li><a href="{% url 'account:issue_list' %}"><i class="fa fa-book"></i>لیست امانت ها </a></li>
                 <li><a href="{% url 'account:create_book' %}"> <i class="fa fa-snowflake-o" aria-hidden="true"></i>اضافه
                     کردن کتاب </a></li>
             </ul>
@@ -37,11 +38,10 @@
                     کردن کتاب </a></li>
             </ul>
         </li>
-        <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
     </ul>
-    <span class="heading">Extras</span>
+    <span class="heading">Issue</span>
     <ul class="list-unstyled">
-        <li><a href="#"> <i class="icon-settings"></i>Demo </a></li>
+        <li><a href="{% url 'account:issue' %}"> <i class="icon-settings"></i>امانت دادن </a></li>
         <li><a href="#"> <i class="icon-writing-whiteboard"></i>Demo </a></li>
         <li><a href="#"> <i class="icon-chart"></i>Demo </a></li>
     </ul>

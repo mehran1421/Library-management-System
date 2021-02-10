@@ -1,0 +1,29 @@
+{% extends 'registrations/base.html' %}
+{% load static %}
+
+{% block metatitle %}
+    بازگرداندن کتاب
+{% endblock %}
+
+{% block code %}
+    <div class="page-content">
+        <div class="page-header">
+            <div class="container-fluid">
+                <h2 class="h5 no-margin-bottom">بازگرداندن کتاب</h2>
+            </div>
+            <div class="col-md-8 text-center mx-auto">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0 float-left">باز گرداندن کتاب</h3>
+                    </div>
+                    <div class="card-body py-4">
+                        <form method="post">{% csrf_token %}
+                            <p class="py-2">آیا از برگرداندن کتاب مطمِین هستید?</p>
+                            <input type="submit" value="حذف" class="btn btn-danger">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
