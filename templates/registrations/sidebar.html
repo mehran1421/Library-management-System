@@ -18,6 +18,7 @@
     <!-- Sidebar Navidation Menus-->
     <span class="heading">مدیریت کتابخانه دانشگاه شاهرود</span>
     <ul class="list-unstyled">
+        <li><a href="{% url 'account:profile' %}"><i class="fa fa-book"></i>پروفایل کاربری</a></li>
         <li>
             <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
                 <i class="icon-windows"></i>کتاب ها </a>
@@ -33,7 +34,7 @@
                 {% endif %}
             </ul>
         </li>
-        <li><a href="{% url 'account:profile' %}"><i class="fa fa-book"></i>پروفایل کاربری</a></li>
+
         {% if request.user.is_superuser %}
             <li>
                 <a href="#exampledropdownDropdown2" aria-expanded="false" data-toggle="collapse">

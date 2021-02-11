@@ -18,8 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('django.contrib.auth.urls')),
     path('account/', include('account.urls')),
-    path('book/',include('book.urls')),
 ]
 
 from django.conf import settings

@@ -1,0 +1,31 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block meta_title %}{% block title %}
+    صفحه ورود
+{% endblock %}{% endblock %}
+
+{% block form_use %}
+    <div class="col-lg-6 bg-white">
+        <div class="form d-flex align-items-center">
+            <div class="content">
+                <form method="post" class="form-validate">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.username|add_class:"input-material"|attr:"id:login-username name:loginUsername data-msg:لطفا نام کاربری خود را وارد کنید" }}
+                        <label for="login-username" class="label-material">نام کاربری</label>
+                    </div>
+                    <div class="form-group">
+                        {{ form.password|add_class:"input-material"|attr:"id:login-username name:loginPassword data-msg:لطفا زمز عبور خود را وارد کنید" }}
+                        <label for="login-password" class="label-material">رمز عبور</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ورود</button>
+                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+                </form>
+                <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an
+                account? </small><a href="register.html" class="signup">Signup</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
