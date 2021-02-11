@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BookList, BookCreate, MemberList, IssueBook, IssueUpdate, IssueList,Submitions,SearchIssueList,SearchBookList
+from .views import BookList, BookCreate, MemberList, IssueBook, IssueUpdate, IssueList,Submitions,SearchIssueList,SearchBookList,Profile
 
 app_name = 'account'
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('issue/update/<int:pk>', IssueUpdate.as_view(), name='issue_update'),
     path('issue/delete/<int:pk>', Submitions.as_view(), name="issue-delete"),
     path('issue/search', SearchIssueList.as_view(), name="issue-search"),
+    path('profile',Profile.as_view(),name='profile'),
 ]

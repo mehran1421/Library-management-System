@@ -6,6 +6,7 @@ from book.models import Book, Issue
 from .mixins import SuperUserAccessMixin, FormValidMixin,FormDeleteMixin,FormRenewMixin
 from account.models import User
 from django.db.models import Q
+from .forms import ProfileForm
 
 
 class BookList(LoginRequiredMixin, ListView):
@@ -39,7 +40,7 @@ class IssueBook(SuperUserAccessMixin, FormValidMixin, CreateView):
 
 class IssueList(LoginRequiredMixin,ListView):
     template_name = 'registrations/issue_list.html'
-    queryset = Issue.objects.all()
+
     def get_queryset(self):
         if self.request.user.is_superuser:
             return Issue.objects.all()
@@ -69,7 +70,7 @@ class SearchIssueList(SuperUserAccessMixin,ListView):
         return Issue.objects.filter(Q(slugBook__icontains=search)|Q(slugUser__icontains=search))
 
 
-class SearchBookList(ListView):
+class SearchBookList(LoginRequiredMixin,ListView):
     paginate_by=6
     template_name="registrations/list_book.html"
 
@@ -83,3 +84,18 @@ class SearchBookList(ListView):
                                    Q(category__title__icontains=search),status='p')
 
 
+class Profile(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = "registrations/profile.html"
+    success_url = reverse_lazy("account:profile")
+
+    def get_object(self, queryset=None):
+        return User.objects.get(pk=self.request.user.pk)
+
+    def get_form_kwargs(self):
+        kwargs = super(Profile, self).get_form_kwargs()
+        kwargs.update({
+            'user': self.request.user
+        })
+        return kwargs

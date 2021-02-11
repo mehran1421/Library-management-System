@@ -1,0 +1,65 @@
+{% extends 'registrations/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+
+{% block metatitle %}
+    پروفایل کاربری
+{% endblock %}
+
+{% block code %}
+    <div class="page-content">
+        <div class="page-header">
+            <div class="container-fluid">
+                <h2 class="h5 no-margin-bottom">پروفایل کاربری</h2>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="block">
+                <div class="block-body">
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="line"></div>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="form-group-material">
+                                    {{ form.username|add_class:"input-material"|attr:"id:register-username name:registerUsername" }}
+                                    <label for="register-username" class="label-material">نام کاربری</label>
+                                </div>
+                                <div class="form-group-material">
+                                    {{ form.email|add_class:"input-material"|attr:"id:register-username name:registerUsername" }}
+                                    <label for="register-username" class="label-material">ایمیل</label>
+                                </div>
+                                <div class="form-group-material">
+                                    {{ form.first_name|add_class:"input-material"|attr:"id:register-username name:registerUsername" }}
+                                    <label for="register-username" class="label-material">نام</label>
+                                </div>
+                                <div class="form-group-material">
+                                    {{ form.last_name|add_class:"input-material"|attr:"id:register-username name:registerUsername" }}
+                                    <label for="register-username" class="label-material">نام خانوادگی</label>
+                                </div>
+                                <div class="form-group-material">
+                                    {{ form.slug|add_class:"input-material"|attr:"id:register-username name:registerUsername" }}
+                                    <label for="register-username" class="label-material">کد کتابخانه ای</label>
+                                </div>
+                                <div class="form-group-material">
+                                    {{ form.address|add_class:"input-material"|attr:"id:register-username name:registerUsername" }}
+                                    <label for="register-username" class="label-material">آدرس</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="line"></div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-9 ml-auto">
+                                <button type="submit" class="btn btn-primary">ویرایش اطلاعات</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

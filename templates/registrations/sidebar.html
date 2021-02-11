@@ -33,6 +33,7 @@
                 {% endif %}
             </ul>
         </li>
+        <li><a href="{% url 'account:profile' %}"><i class="fa fa-book"></i>پروفایل کاربری</a></li>
         {% if request.user.is_superuser %}
             <li>
                 <a href="#exampledropdownDropdown2" aria-expanded="false" data-toggle="collapse">
@@ -52,5 +53,6 @@
 
             </ul>
         {% endif %}
+
 </nav>
 <!-- Sidebar Navigation end-->
