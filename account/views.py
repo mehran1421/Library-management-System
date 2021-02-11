@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView,DeleteView,UpdateView,DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from book.models import Book, Issue
-from .mixins import SuperUserAccessMixin, FormValidMixin,FormDeleteMixin
+from .mixins import SuperUserAccessMixin, FormValidMixin,FormDeleteMixin,FormRenewMixin
 from account.models import User
 
 
@@ -17,33 +17,34 @@ class BookList(LoginRequiredMixin, ListView):
             return Issue.objects.filter(slugUser=self.request.user.slug)
 
 
-class MemberList(SuperUserAccessMixin, LoginRequiredMixin, ListView):
+class MemberList(SuperUserAccessMixin, ListView):
     template_name = 'registrations/list_member.html'
     queryset = User.objects.all()
 
 
-class BookCreate(SuperUserAccessMixin, LoginRequiredMixin, CreateView):
+class BookCreate(SuperUserAccessMixin, CreateView):
     model = Book
     fields = ['title', 'slug', 'category', 'description', 'author', 'thumbnail', 'status']
     template_name = 'registrations/add_book.html'
     success_url = reverse_lazy("account:list_book")
 
 
-class IssueBook(SuperUserAccessMixin, FormValidMixin, LoginRequiredMixin, CreateView):
+class IssueBook(SuperUserAccessMixin, FormValidMixin, CreateView):
     model = Issue
     fields = ['slugBook', 'slugUser']
     template_name = 'registrations/issue_book.html'
     success_url = reverse_lazy("account:list_book")
 
 
-class IssueList(SuperUserAccessMixin,LoginRequiredMixin,ListView):
+class IssueList(SuperUserAccessMixin,ListView):
     template_name = 'registrations/issue_list.html'
     queryset = Issue.objects.all()
 
 
-class IssueUpdate(UpdateView):
-    template_name ='registrations/issue-update.html'
-    fields =['created','renewCount']
+class IssueUpdate(SuperUserAccessMixin,FormRenewMixin,UpdateView):
+    model = Issue
+    template_name ='registrations/issue_book.html'
+    fields = ['slugBook', 'slugUser']
 
 
 class Submitions(SuperUserAccessMixin,FormDeleteMixin,DeleteView):

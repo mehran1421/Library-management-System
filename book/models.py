@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime, timedelta
 from account.models import User
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -69,3 +70,6 @@ class Issue(models.Model):
 
     is_on_time.boolean = True
     is_on_time.short_description = "وضعیت کتاب به امانت گرفته شده"
+
+    def get_absolute_url(self):
+        return reverse("account:issue_list")
