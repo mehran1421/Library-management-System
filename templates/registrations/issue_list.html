@@ -32,7 +32,7 @@
                                 <td><a href="{% url 'account:issue_update' book.pk %}"> {{ book.slugBook }}</a></td>
                                 <td>{{ book.slugUser }}</td>
                                 <td>{{ book.renewCount }}</td>
-                                <td>{{ book.created }}</td>
+                                <td>{{ book.jpublish }}</td>
                                 <td>
                                     {% if book.is_on_time %}
                                         <i class="fa fa-check-circle" style="color: green"></i>

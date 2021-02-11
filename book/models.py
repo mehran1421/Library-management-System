@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-from datetime import datetime, timedelta
+from extension.utils import jalaly_converter
+from datetime import timedelta
 from account.models import User
 from django.urls import reverse
 
@@ -53,6 +54,7 @@ class Issue(models.Model):
     slugUser = models.SlugField(unique=True, blank=True, verbose_name="کد کاربر")
     created = models.DateTimeField(auto_now_add=True, verbose_name='زمان انتشار')
     renewCount = models.IntegerField(verbose_name="تعداد تمدید")
+
     class Meta:
         verbose_name = "امانت"
         verbose_name_plural = "امانات"
@@ -73,3 +75,8 @@ class Issue(models.Model):
 
     def get_absolute_url(self):
         return reverse("account:issue_list")
+
+    def jpublish(self):
+        return jalaly_converter(self.created)
+
+    jpublish.short_description = "زمان امانت گرفتنر"
