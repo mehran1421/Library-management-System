@@ -2,7 +2,17 @@
 
 **this is a simple project**
 
-# ScrinShots
+## Need to be done
+- [ ] use celery for send email
+- [ ] send email for delay return book
+- [ ] use postgresql database
+- [X] ~~Renew book~~
+- [X] ~~Return book~~
+- [X] ~~Issue book~~
+- [X] ~~sign up and login user~~
+- [X] ~~list issue and publish book~~
+
+# Screen Shots
 ![ScreenShot](picture/1.jpg)
 
 ![ScreenShot](picture/2.jpg)
