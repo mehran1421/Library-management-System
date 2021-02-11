@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import BookList, BookCreate, MemberList, IssueBook, IssueUpdate, IssueList,Submitions,SearchIssueList
+from .views import BookList, BookCreate, MemberList, IssueBook, IssueUpdate, IssueList,Submitions,SearchIssueList,SearchBookList
 
 app_name = 'account'
 urlpatterns = [
     path('book/list', BookList.as_view(), name='list_book'),
     path('book/create', BookCreate.as_view(), name='create_book'),
+    path('book/search', SearchBookList.as_view(), name='book_search'),
     path('user/list', MemberList.as_view(), name='list_member'),
     path('issue', IssueBook.as_view(), name='issue'),
     path('issue/list', IssueList.as_view(), name='issue_list'),

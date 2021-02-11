@@ -54,7 +54,7 @@ class Submitions(SuperUserAccessMixin,FormDeleteMixin,DeleteView):
     success_url = reverse_lazy('account:issue_list')
 
 
-class SearchIssueList(ListView):
+class SearchIssueList(SuperUserAccessMixin,ListView):
     paginate_by=6
     template_name="registrations/issue_list.html"
 
@@ -62,3 +62,19 @@ class SearchIssueList(ListView):
         global search
         search=self.request.GET.get('q')
         return Issue.objects.filter(Q(slugBook__icontains=search)|Q(slugUser__icontains=search))
+
+
+class SearchBookList(ListView):
+    paginate_by=6
+    template_name="registrations/list_book.html"
+
+    def get_queryset(self):
+        global search
+        search=self.request.GET.get('q')
+        return Book.objects.filter(Q(slug__icontains=search)|
+                                   Q(title__icontains=search)|
+                                   Q(author__icontains=search)|
+                                   Q(description__icontains=search)|
+                                   Q(category__title__icontains=search),status='p')
+
+
