@@ -28,7 +28,8 @@
                     <li><a href="{% url 'account:create_book' %}"> <i class="fa fa-snowflake-o" aria-hidden="true"></i>اضافه
                         کردن کتاب </a></li>
                 {% else %}
-                    <li><a href="{% url 'account:list_book' %}"><i class="fa fa-book"></i>امانت های شما </a></li>
+                    <li><a href="{% url 'account:issue_list' %}"><i class="fa fa-book"></i>امانت های شما </a></li>
+                    <li><a href="{% url 'account:list_book' %}"><i class="fa fa-book"></i>کتاب های موجود </a></li>
                 {% endif %}
             </ul>
         </li>

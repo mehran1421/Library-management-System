@@ -15,7 +15,7 @@ class BookList(LoginRequiredMixin, ListView):
         if self.request.user.is_superuser:
             return Book.objects.all()
         else:
-            return Issue.objects.filter(slugUser=self.request.user.slug)
+            return Book.objects.filter(status='p')
 
 
 class MemberList(SuperUserAccessMixin, ListView):
@@ -37,9 +37,14 @@ class IssueBook(SuperUserAccessMixin, FormValidMixin, CreateView):
     success_url = reverse_lazy("account:list_book")
 
 
-class IssueList(SuperUserAccessMixin,ListView):
+class IssueList(LoginRequiredMixin,ListView):
     template_name = 'registrations/issue_list.html'
     queryset = Issue.objects.all()
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Issue.objects.all()
+        else:
+            return Issue.objects.filter(slugUser=self.request.user.slug)
 
 
 class IssueUpdate(SuperUserAccessMixin,FormRenewMixin,UpdateView):
