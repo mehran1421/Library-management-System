@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from book.models import Book, Issue
 from .mixins import SuperUserAccessMixin, FormValidMixin,FormDeleteMixin,FormRenewMixin
 from account.models import User
+from django.db.models import Q
 
 
 class BookList(LoginRequiredMixin, ListView):
@@ -51,3 +52,13 @@ class Submitions(SuperUserAccessMixin,FormDeleteMixin,DeleteView):
     model = Issue
     template_name = 'registrations/issue_confirm_delete.html'
     success_url = reverse_lazy('account:issue_list')
+
+
+class SearchIssueList(ListView):
+    paginate_by=6
+    template_name="registrations/issue_list.html"
+
+    def get_queryset(self):
+        global search
+        search=self.request.GET.get('q')
+        return Issue.objects.filter(Q(slugBook__icontains=search)|Q(slugUser__icontains=search))
