@@ -6,7 +6,7 @@ from book.models import Book, Issue
 from .mixins import SuperUserAccessMixin, FormValidMixin,FormDeleteMixin,FormRenewMixin
 from account.models import User
 from django.db.models import Q
-from .forms import ProfileForm
+from .forms import ProfileForm,RegisterForm
 
 
 class BookList(LoginRequiredMixin, ListView):
@@ -99,3 +99,8 @@ class Profile(LoginRequiredMixin, UpdateView):
             'user': self.request.user
         })
         return kwargs
+
+class Register(SuperUserAccessMixin,CreateView):
+    form_class = RegisterForm
+    template_name = "registration/register.html"
+    success_url = "registration/login.html"

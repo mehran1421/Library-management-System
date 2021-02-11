@@ -23,8 +23,10 @@
                     <button type="submit" class="btn btn-primary">ورود</button>
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                 </form>
-                <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an
-                account? </small><a href="register.html" class="signup">Signup</a>
+                <a href="#" class="forgot-pass">Forgot Password?</a><br>
+                {% if request.user.is_superuser %}
+                    <small>آیا اکانتی ندارید? </small><a href="{% url 'register' %}" class="signup">ثبت نام</a>
+                {% endif %}
             </div>
         </div>
     </div>
